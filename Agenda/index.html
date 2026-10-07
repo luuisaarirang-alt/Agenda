@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#64182d">
+  <title>Luna | Agenda Privada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" data-page="dashboard">
+      <span class="brand-symbol">☾</span>
+      <span><strong>CRYSTAL</strong><small>PRIVATE OFFICE</small></span>
+    </a>
+
+    <div class="menu-label">ESPAÇO DE TRABALHO</div>
+    <nav class="navigation">
+      <button class="nav-item active" data-page="dashboard"><span>⌂</span> Visão geral</button>
+      <button class="nav-item" data-page="agenda"><span>▦</span> Agenda</button>
+      <button class="nav-item" data-page="calendario"><span>▦</span> Calendário</button>
+      <button class="nav-item" data-page="clientes"><span>♙</span> Clientes</button>
+      <button class="nav-item" data-page="servicos"><span>✧</span> Atendimentos</button>
+      <button class="nav-item" data-page="financeiro"><span>◷</span> Financeiro</button>
+      <button class="nav-item" data-page="marketing"><span>◇</span> Marketing</button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="privacy-mark">✧</div>
+      <p>Um espaço reservado para organizar seu trabalho.</p>
+      <span>SEU ESPAÇO · SUA PRIVACIDADE</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+      <div class="breadcrumb">CRYSTAL <span>/</span> <b id="breadcrumb">Visão geral</b></div>
+      <div class="top-actions">
+        <span class="today-label" id="headerDate"></span>
+        <button class="button button-primary" id="quickAdd">＋ Novo registro</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="page active" id="page-dashboard">
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="sparkle">✦</span> SEU ESPAÇO DE TRABALHO</div>
+            <h1>Visão geral<span class="heading-dot">.</span></h1>
+            <p class="subtitle" id="welcomeDate"></p>
+          </div>
+          <button class="button button-outline" data-go="agenda">Ver agenda ↗</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-label">RECEBIDO HOJE</span>
+            <strong id="dashTodayMoney">R$ 0,00</strong>
+            <span class="stat-foot" id="dashTodayCount">0 pagamentos</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">RECEBIDO NO MÊS</span>
+            <strong id="dashMonthMoney">R$ 0,00</strong>
+            <span class="stat-foot" id="dashMonthCount">0 pagamentos</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">VALORES PREVISTOS</span>
+            <strong id="dashPendingMoney">R$ 0,00</strong>
+            <span class="stat-foot">Atendimentos ainda não pagos</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">CLIENTES CADASTRADOS</span>
+            <strong id="dashClients">0</strong>
+            <span class="stat-foot">Na sua base de clientes</span>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="panel-heading">
+              <div><span class="section-kicker">ACOMPANHAMENTO</span><h2>Agenda de hoje</h2></div>
+              <button class="text-button" data-go="agenda">Ver agenda ↗</button>
+            </div>
+            <div id="dashboardSchedule" class="schedule-list"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-heading">
+              <div><span class="section-kicker">SEU NEGÓCIO</span><h2>Resumo financeiro</h2></div>
+              <button class="text-button" data-go="financeiro">Detalhes ↗</button>
+            </div>
+            <div class="mini-finance">
+              <span>Faturamento deste mês</span>
+              <strong id="dashFinanceTotal">R$ 0,00</strong>
+              <div class="progress-track"><div id="dashProgress" class="progress-fill"></div></div>
+              <p id="dashFinanceNote">Seus pagamentos recebidos aparecerão aqui.</p>
+            </div>
+            <div class="divider"></div>
+            <div class="mini-row"><span>Eventos de hoje</span><strong id="dashEvents">0</strong></div>
+            <div class="mini-row"><span>Atendimentos agendados hoje</span><strong id="dashSessions">0</strong></div>
+          </section>
+        </div>
+        <div class="privacy-note">☾ <span><strong>Privacidade em primeiro lugar.</strong> Os dados deste protótipo ficam armazenados neste navegador. Não são enviados automaticamente para a internet.</span></div>
+      </section>
+
+      <section class="page" id="page-agenda">
+        <div class="page-heading">
+          <div><div class="eyebrow">ORGANIZAÇÃO DIÁRIA</div><h1>Agenda<span class="heading-dot">.</span></h1><p class="subtitle" id="agendaDate"></p></div>
+          <button class="button button-primary" id="addFromAgenda">＋ Adicionar</button>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" id="agendaViews">
+            <button class="selected" data-view="day">Dia</button>
+            <button data-view="week">Semana</button>
+            <button data-view="month">Mês</button>
+            <button data-view="year">Ano</button>
+          </div>
+          <div class="date-controls"><button id="agendaPrev" aria-label="Período anterior">‹</button><button id="agendaToday">Hoje</button><button id="agendaNext" aria-label="Próximo período">›</button><input type="date" id="agendaDatePicker"></div>
+        </div>
+        <div class="panel calendar-panel">
+          <div class="panel-heading"><div><span class="section-kicker">COMPROMISSOS</span><h2 id="agendaPeriodTitle">Agenda de hoje</h2></div><span class="count-badge" id="agendaCount">0 registros</span></div>
+          <div id="agendaResults"></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-calendario">
+        <div class="page-heading">
+          <div><div class="eyebrow">VISÃO DO TEMPO</div><h1>Calendário<span class="heading-dot">.</span></h1><p class="subtitle">Seus compromissos em uma única visão.</p></div>
+          <button class="button button-primary" id="calendarAdd">＋ Criar evento</button>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" id="calendarViews">
+            <button data-view="day">Dia</button><button data-view="week">Semana</button><button class="selected" data-view="month">Mês</button><button data-view="year">Ano</button>
+          </div>
+          <div class="date-controls"><button id="calPrev">‹</button><button id="calToday">Hoje</button><button id="calNext">›</button><input type="date" id="calDatePicker"></div>
+        </div>
+        <div class="panel calendar-panel">
+          <div class="panel-heading"><div><span class="section-kicker">CALENDÁRIO</span><h2 id="calendarTitle"></h2></div></div>
+          <div id="calendarContent"></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-clientes">
+        <div class="page-heading"><div><div class="eyebrow">RELACIONAMENTO</div><h1>Clientes<span class="heading-dot">.</span></h1><p class="subtitle">Sua base de clientes e histórico de atendimentos.</p></div><button class="button button-primary" id="addClient">＋ Novo cliente</button></div>
+        <div class="toolbar"><input class="search-input" id="clientSearch" placeholder="Buscar por nome ou contato..."><span class="count-badge" id="clientCount">0 clientes</span></div>
+        <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>CLIENTE</th><th>CONTATO</th><th>ATENDIMENTOS</th><th>TOTAL PAGO</th><th></th></tr></thead><tbody id="clientsTable"></tbody></table></div></div>
+      </section>
+
+      <section class="page" id="page-servicos">
+        <div class="page-heading"><div><div class="eyebrow">SEU CATÁLOGO</div><h1>Atendimentos<span class="heading-dot">.</span></h1><p class="subtitle">Organize os tipos de consulta, preços e duração.</p></div><button class="button button-primary" id="addService">＋ Novo serviço</button></div>
+        <div class="service-grid" id="servicesGrid"></div>
+      </section>
+
+      <section class="page" id="page-financeiro">
+        <div class="page-heading"><div><div class="eyebrow">CONTROLE DO NEGÓCIO</div><h1>Financeiro<span class="heading-dot">.</span></h1><p class="subtitle">Acompanhe recebimentos e valores previstos.</p></div></div>
+        <div class="toolbar"><div class="segmented" id="financeViews"><button data-period="week">Semana</button><button class="selected" data-period="month">Mês</button><button data-period="year">Ano</button></div><input type="date" id="financeDate" class="date-input"></div>
+        <div class="stats-grid finance-stats">
+          <article class="stat-card featured-stat"><span class="stat-label">TOTAL RECEBIDO</span><strong id="finReceived">R$ 0,00</strong><span class="stat-foot" id="finPeriodLabel">Período selecionado</span></article>
+          <article class="stat-card"><span class="stat-label">VALOR PREVISTO</span><strong id="finExpected">R$ 0,00</strong><span class="stat-foot">Ainda não recebido</span></article>
+          <article class="stat-card"><span class="stat-label">ATENDIMENTOS PAGOS</span><strong id="finPaidCount">0</strong><span class="stat-foot">No período selecionado</span></article>
+          <article class="stat-card"><span class="stat-label">TICKET MÉDIO</span><strong id="finAverage">R$ 0,00</strong><span class="stat-foot">Por atendimento pago</span></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">MOVIMENTAÇÃO</span><h2>Faturamento por período</h2></div></div><div id="financeChart" class="finance-chart"></div></section>
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">RESUMO</span><h2>Indicadores</h2></div></div><div class="mini-row"><span>Pagamentos recebidos</span><strong id="finPaidCount2">0</strong></div><div class="mini-row"><span>Atendimentos não pagos</span><strong id="finPendingCount">0</strong></div><div class="mini-row"><span>Cancelamentos</span><strong id="finCancelled">0</strong></div><div class="mini-row"><span>Recebido no ano</span><strong id="finYearTotal">R$ 0,00</strong></div></section>
+        </div>
+        <section class="panel transaction-panel"><div class="panel-heading"><div><span class="section-kicker">HISTÓRICO</span><h2>Atendimentos do período</h2></div></div><div class="table-wrap"><table><thead><tr><th>DATA</th><th>CLIENTE</th><th>SERVIÇO</th><th>STATUS</th><th>VALOR</th></tr></thead><tbody id="financeTable"></tbody></table></div></section>
+        <p class="muted-note">Este protótipo calcula recebimentos, não lucro líquido. Para calcular lucro real, também será necessário cadastrar despesas, taxas e outros custos.</p>
+      </section>
+
+      <section class="page" id="page-marketing">
+        <div class="page-heading"><div><div class="eyebrow">PRESENÇA DIGITAL</div><h1>Marketing<span class="heading-dot">.</span></h1><p class="subtitle">Planeje conteúdos, campanhas e ações de divulgação.</p></div><button class="button button-primary" id="addMarketing">＋ Novo evento</button></div>
+        <div class="panel"><div class="panel-heading"><div><span class="section-kicker">PLANEJAMENTO</span><h2>Eventos de marketing</h2></div></div><div id="marketingResults"></div></div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="mobile-nav">
+    <button data-page="agenda"><span>▦</span>Agenda</button>
+    <button data-page="calendario"><span>☾</span>Calendário</button>
+    <button class="mobile-add" id="mobileAdd">＋</button>
+    <button data-page="clientes"><span>♙</span>Clientes</button>
+    <button data-page="servicos"><span>✧</span>Serviços</button>
+  </nav>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-heading"><div><span class="section-kicker">LUNA · REGISTRO</span><h2 id="modalTitle">Novo registro</h2></div><button class="close-modal" id="closeModal" aria-label="Fechar">×</button></div>
+      <div id="modalContent"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
